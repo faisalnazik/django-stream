@@ -1,0 +1,25 @@
+{% extends "_base.html" %}
+{% load mptt_tags %}
+
+
+{% block content %}
+    <ul class="root">
+        {% recursetree TvShowsClassifierView %}
+            <li>
+            	
+                {{ node.title }}
+                
+                
+                
+               
+            </li>
+        {% endrecursetree %}
+
+    </ul>
+
+
+{% full_tree_for_model tests.TvShowsClassifierView as TvShowsClassifierView %}
+{% endfull_tree_for_model %}
+
+
+{% endblock %}

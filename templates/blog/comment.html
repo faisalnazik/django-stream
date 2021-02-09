@@ -1,0 +1,48 @@
+<div class="container-1 left">
+   <div class="f-card content">
+      <h2>{{page_obj.created_at}}</h2>
+      <p>{{page_obj.comment}}.</p>
+      <div class="text-left">
+         <span class="pointer">
+            {% if request.user in page_obj.likes.users.all%}
+            <!-- already liked-->
+            <a href={% url 'requirement_comment_vote' comment_id=page_obj.pk opition='like' %}> <i
+               data-toggle="tooltip" data-placement="bottom" title="Unlike"
+               class="like fas fa-thumbs-up pr-2">
+            <span>{{page_obj.get_total_likes}}</span>
+            </i>
+            </a>
+            {% else %}
+            <!--not liked-->
+            <a href={% url 'requirement_comment_vote' comment_id=page_obj.pk opition='like' %}><i
+               data-toggle="tooltip" data-placement="bottom" title="Like"
+               class="default-icon fas fa-thumbs-up pr-2">
+            <span>{% if page_obj.get_total_likes  %}{{page_obj.get_total_likes}} {% else %} 0
+            {% endif %}</span></i>
+            </a>
+            {% endif %}
+         </span>
+         <span class="ml-3 pointer">
+         {% if request.user in page_obj.dis_likes.users.all %}
+         <a href={% url 'requirement_comment_vote' comment_id=page_obj.pk opition='dis_like' %}><i
+            data-toggle="tooltip" data-placement="bottom" title="i dislike this"
+            class="dislike fas fa-thumbs-down pr-2">
+         <span>{{page_obj.get_total_dis_likes}}</span></i>
+         </a>
+         {% else %}
+         <a href={% url 'requirement_comment_vote' comment_id=page_obj.pk opition='dis_like' %}><i
+            data-toggle="tooltip" data-placement="bottom" title="i dislike this "
+            class="default-icon fas fa-thumbs-down pr-2">
+         <span>{% if  page_obj.get_total_dis_likes %}{{page_obj.get_total_dis_likes}}
+         {% else %} 0 {% endif %}</span></i>
+         </a>
+         {% endif %}
+         </span>
+      </div>
+      <p class="text-right">{{page_obj.user.first_name}} {{page_obj.user.last_name}}.
+         {% if page_obj.user == request.user  %}
+         <span><a class="circle-card" href="{% url 'requirement_comment_update' page_obj.id %}"><i class="fas fa-edit"></a></i></span>
+         {% endif %}
+      </p>
+   </div>
+</div>

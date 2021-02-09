@@ -1,0 +1,16 @@
+{% extends "_base.html" %}
+{% load mptt_tags %}
+
+
+{% block content %}
+    <ul>
+        {% recursetree genres %}
+            <li>
+                {{ node.name }}
+                
+               
+            </li>
+        {% endrecursetree %}
+    </ul>
+
+{% endblock %}
