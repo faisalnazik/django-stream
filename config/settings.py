@@ -207,8 +207,8 @@ CKEDITOR_CONFIGS = {
 
 
 '''
-superuser username : fnz1
-email: fnz1@fnz.com
+superuser: fnz
+email: fnz@mail.com
 password: fnz111
 
 '''
