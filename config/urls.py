@@ -12,6 +12,7 @@ urlpatterns = [
     path('', include('blog.urls')),
     path('', include('tvshows.urls')),
     path('', include('home.urls')),
+    path('', include('streams.urls')),
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
     path('ckeditor/', include('ckeditor_uploader.urls')),
 ]
