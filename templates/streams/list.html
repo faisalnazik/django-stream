@@ -4,6 +4,11 @@
 
 {% block title %} freeStreams {% endblock %}
 {% block content %}
-
+    <h2>Tv Shows </h2>
+    <ul>
+        {% for shows in object_list %}
+            <li>{{ shows.title }}</li>
+                
+        {% endfor %}
+    </ul>
 {% endblock %}
-

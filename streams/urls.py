@@ -9,5 +9,5 @@ app_name = 'streams'
 urlpatterns = [
 
     #path('content/', TemplateView.as_view(template_name="streams/list.html")), 
-
+    path('content/', TvShowsClassifierView.as_view()),
 ]

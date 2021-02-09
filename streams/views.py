@@ -7,10 +7,11 @@ from django.db.models import Count, Avg, Count, Q, F
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 from django.contrib.postgres.search import TrigramSimilarity
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, request
-from django.views.generic import RedirectView
+from django.views.generic import RedirectView, ListView
 
 
 
 
-class TvShowsClassifierView():
+class TvShowsClassifierView(ListView):
+    model = TvShowsClassifier
     template_name = 'streams/list.html'
