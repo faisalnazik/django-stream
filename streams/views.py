@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
 from .models import TvShowsClassifier, Season, Episode
@@ -36,16 +36,15 @@ def tv_show_list(request):
     )
 
 
-def tv_show_detail(request, year, month, day, post):
+def tv_show_detail(request, post,):
 
-    post = get_object_or_404(TvShowsClassifierView, slug=post,
-                        status='published',
-                        publish__year=year,
-                        publish__month=month,
-                        publish__day=day)
-
+    post = get_object_or_404(TvShowsClassifier, slug=post,
+                        status='published')
+    # episodes = get_object_or_404(Season, slug=episodes,
+    #                             status= 'published')
     return render(request, 'streams/detail.html',
                             {'post' : post,
+                            
                             })
     
 
@@ -78,3 +77,17 @@ class TvShowsDetailSlugView(DetailView):
         if instance is None:
             raise Http404("Product doesn't exist")
         return instance
+
+
+
+# class TvShowDetail(DetailView):
+    
+#     template_name = "streams/detail.html"
+
+#     context = get_object_or_404(TvShowsClassifier, slug=context,
+#                                     status='published',
+#                                     create_at__year=year,
+#                                     create_at__month=month,
+#                                     create_at__day=day)
+
+#     return context

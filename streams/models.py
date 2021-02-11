@@ -68,13 +68,18 @@ class TvShowsClassifier(models.Model):
 
     # def get_absolute_url(self):
     #     return reverse('streams:tv_show_detail', args=self.slug)
-    
-    # objects = models.Manager() # The default manager.	
-    # published = PublishedManager()
-    objects = TvShowsManager()
     def get_absolute_url(self):
-        #return "/products/{slug}/".format(slug=self.slug)
-        return reverse("streams:tv_show_detail", kwargs={"slug": self.slug})
+        return reverse('streams:tv_show_detail', 
+
+                        args=[
+                        self.slug])
+
+    objects = models.Manager() # The default manager.	
+    published = PublishedManager()
+    # objects = TvShowsManager()
+    # def get_absolute_url(self):
+    #     #return "/products/{slug}/".format(slug=self.slug)
+    #     return reverse("streams:tv_show_detail", kwargs={"slug": self.slug})
 
 
 
@@ -87,6 +92,7 @@ class Season(models.Model):
     season_parent = models.ForeignKey(TvShowsClassifier, on_delete=models.CASCADE)
     title = models.CharField(max_length=150)
     slug = models.SlugField(null=False, unique=True)
+    active = models.BooleanField(default=True)
     create_at= models.DateTimeField(auto_now_add=True)
     update_at= models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=10,choices=STATUS_CHOICES, default='draft')
@@ -103,6 +109,7 @@ class Episode(models.Model):
     episode_of = models.ForeignKey(Season, on_delete=models.CASCADE)
     title = models.CharField(max_length=150)
     description = models.TextField(null=True)
+    active = models.BooleanField(default=True)
     image=models.ImageField(upload_to='images/',null=False)
     slug = models.SlugField(null=False, unique=True)
     create_at=models.DateTimeField(auto_now_add=True)
