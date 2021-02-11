@@ -15,3 +15,22 @@ from django.views.generic import RedirectView, ListView
 class TvShowsClassifierView(ListView):
     model = TvShowsClassifier
     template_name = 'streams/list.html'
+
+
+def tv_show_list(request):
+    object_list = TvShowsClassifier.published.all()
+    paginator = Paginator(object_list, 6)
+    page = request.GET.get('page')
+    try:
+        content = paginator.page(page)
+    except PageNotAnInteger:
+        content = paginator.page(1)
+    except EmptyPage:
+        content = paginator.page(paginator.num_pages)
+
+    return render(
+                'streams/list.html',
+                {'page' : page,
+                'content' : content,
+                }
+    )
