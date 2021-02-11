@@ -11,7 +11,7 @@
     
     <ul>
         {% for shows in object_list %}
-        <a href="{{ TvShowsClassifier.get_absolute_url }}"></a>
+        <a href="{{ TvShowsClassifier.get_absolute_url }}">
             <li>{{ shows.title }}</li></a>
                 
         {% endfor %}

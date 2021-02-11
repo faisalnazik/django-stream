@@ -7,8 +7,8 @@ from django.db.models import Count, Avg, Count, Q, F
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 from django.contrib.postgres.search import TrigramSimilarity
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, request
-from django.views.generic import RedirectView, ListView
-
+from django.views.generic import RedirectView, ListView, DetailView
+# from analytics.mixins import ObjectViewedMixin
 
 
 
@@ -48,3 +48,33 @@ def tv_show_detail(request, year, month, day, post):
                             {'post' : post,
                             })
     
+
+
+class TvShowsListView(ListView):
+    template_name = "streams/list.html"
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(TvShowsListView, self).get_context_data(*args, **kwargs)
+        
+        return context
+    def get_queryset(self, *args, **kwargs):
+        request = self.request
+        return TvShowsClassifier.objects.all()
+
+
+class TvShowsDetailSlugView(DetailView):
+    queryset = TvShowsClassifier.objects.all()
+    template_name = "streams/detail.html"
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(TvShowsDetailSlugView, self).get_context_data(*args, **kwargs)
+        
+        return context
+
+    def get_object(self, *args, **kwargs):
+        request = self.request
+        pk = self.kwargs.get('pk')
+        instance = TvShowsClassifier.objects.get_by_id(pk)
+        if instance is None:
+            raise Http404("Product doesn't exist")
+        return instance
