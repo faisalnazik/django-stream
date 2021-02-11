@@ -1,0 +1,33 @@
+{% extends "_base.html" %}
+
+
+
+{% block title %} freeStreams {% endblock %}
+{% block content %}
+
+<div class="card-body">
+    <h1 class="card-title">{{ TvShowsClassifier.title }}</h5>
+    <p class="card-text">
+    	
+		<footer class="blockquote-footer"> Added On {{ TvShowsClassifier.publish }} <cite title="Movie"> </cite></footer>
+	</p>
+	<div class="d-flex p-2" >
+	<!-- <iframe class="video-js vjs-default-skin vjs-4-3 vjs-big-play-centered center" src="{{ post.link }}preview" width="100%" height="672" frameborder="0" scrolling="no" position: relative; allowfullscreen  > </iframe> -->
+	
+    		
+
+    		</a><footer class="blockquote-footer" class="font-weight-light" style="color: ;"> IMDb Rating | <svg style="color: gold" width="1.3em" height="1.3em" viewBox="0 0 16 16" class="bi bi-star-half" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+			  <path fill-rule="evenodd" d="M5.354 5.119L7.538.792A.516.516 0 0 1 8 .5c.183 0 .366.097.465.292l2.184 4.327 4.898.696A.537.537 0 0 1 16 6.32a.55.55 0 0 1-.17.445l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256a.519.519 0 0 1-.146.05c-.341.06-.668-.254-.6-.642l.83-4.73L.173 6.765a.55.55 0 0 1-.171-.403.59.59 0 0 1 .084-.302.513.513 0 0 1 .37-.245l4.898-.696zM8 12.027c.08 0 .16.018.232.056l3.686 1.894-.694-3.957a.564.564 0 0 1 .163-.505l2.906-2.77-4.052-.576a.525.525 0 0 1-.393-.288L8.002 2.223 8 2.226v9.8z"/>
+			</svg>   {{ TvShowsClassifier.imdb_rating }}   |    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+			  <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+			  <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+			</svg>  Views </footer></a>
+			
+			
+
+	  	
+   
+  </div>
+</div>
+    
+{% endblock %}

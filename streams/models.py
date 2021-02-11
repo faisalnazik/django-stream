@@ -38,16 +38,13 @@ class TvShowsClassifier(models.Model):
     class Meta:
         ordering = ('-create_at',)
 
-    objects = models.Manager() # The default manager.	
-    published = PublishedManager() # Our custom manager.
+     # Our custom manager.
 
     def get_absolute_url(self):
-        return reverse('streams:tv_show_detail',
-                    args=[self.create_at.year,
-                    self.create_at.month,
-                    self.create_at.day, self.slug])
-
-
+        return reverse('streams:tv_show_detail', args=self.slug)
+    
+    objects = models.Manager() # The default manager.	
+    published = PublishedManager()
 
 class Season(models.Model):
     STATUS_CHOICES = (
