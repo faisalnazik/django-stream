@@ -6,13 +6,11 @@
 {% block content %}
 
 <div class="card-body">
-    <h1 class="card-title">{{ post.title }}</h5>
-		{% for shows in object_list %}
+    <h1 class="card-title">{{ post.title }}</h1>
+		<div class="card-text">Starring: {{ post.starring }}</div>
+			<div class="card-body">Descriptions {{ post.description }}</div>
+				<div class="card-title">Views {{ post.views }}</div>
 
-		
-
-		{% endfor %}
-    
 </div>
     
 {% endblock %}
