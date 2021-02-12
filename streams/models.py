@@ -17,6 +17,18 @@ class PublishedManager(models.Manager):
 		return super(PublishedManager,
 			self).get_queryset().filter(status='published')
 
+class SeasonManagers(models.Manager):
+    def get_queryset(self):
+        return super(SeasonManagers,
+        self).get_queryset().filter(status='published')
+
+class EpisodesManagers(models.Manager):
+    def get_queryset(self):
+        return super(EpisodesManagers,
+        self).get_queryset().filter(status='published')
+
+
+
 class TvShowsQuerySet(models.query.QuerySet):
     def active(self):
         return self.filter(active=True)
@@ -41,6 +53,8 @@ class TvShowsManager(models.Manager):
     def search(self, query):
         return self.get_queryset().active().search(query)
 
+
+
 class TvShowsClassifier(models.Model): 
     STATUS_CHOICES = (
 		('draft', 'Draft'),
@@ -64,10 +78,6 @@ class TvShowsClassifier(models.Model):
     class Meta:
         ordering = ('-create_at',)
 
-     # Our custom manager.
-
-    # def get_absolute_url(self):
-    #     return reverse('streams:tv_show_detail', args=self.slug)
     def get_absolute_url(self):
         return reverse('streams:tv_show_detail', 
 
@@ -80,8 +90,6 @@ class TvShowsClassifier(models.Model):
     # def get_absolute_url(self):
     #     #return "/products/{slug}/".format(slug=self.slug)
     #     return reverse("streams:tv_show_detail", kwargs={"slug": self.slug})
-
-
 
 
 class Season(models.Model):
@@ -99,6 +107,9 @@ class Season(models.Model):
 
     def __str__(self):
         return self.title
+
+    objects = models.Manager()
+    published = PublishedManager()
 
 
 class Episode(models.Model):
@@ -122,6 +133,7 @@ class Episode(models.Model):
         return self.title
 
 
-    
+    objects = models.Manager()
+    published = PublishedManager()
 
     

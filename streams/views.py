@@ -42,6 +42,7 @@ def tv_show_detail(request, post,):
                         status='published')
     # episodes = get_object_or_404(Season, slug=episodes,
     #                             status= 'published')
+    episodes = Episode.published.filter()
     return render(request, 'streams/detail.html',
                             {'post' : post,
                             
