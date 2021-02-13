@@ -1,7 +1,5 @@
 {% extends "_base.html" %}
-
-
-{% block content %}
+{% block categories %}
     <ul>
         <li>
             <a class="selected" href="{% url 'index' %}">
@@ -16,16 +14,15 @@
             </li>
         {% endfor %}    
     </ul>
+{% endblock %}   
 
-    {% for b in blocks %}
-        <h3>{{ b.name }}</h3>
-
-        <div class="block-area">
-            {% for m in b.movies %}
-                <a href="{% url 'movie' movie_slug=m.slug %}">
-                    
-                </a>
-            {% endfor %}
-        </div>
-    {% endfor %}
+{% block content %}
+    <h3>{{ category.name }}</h3>
+    <div class="category-area">
+        {% for m in movies %}
+            <a href="{% url 'movie' movie_slug=m.slug %}">
+                
+            </a>
+        {% endfor %}
+    </div>
 {% endblock %}

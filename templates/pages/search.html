@@ -1,0 +1,15 @@
+{% extends "_base.html" %}
+{% block content %}
+    <h1>teste</h1>
+
+    |{{ blocks }}|
+
+    |{{ categories }}|
+
+    {% for m in movies %}
+        <img src="{% static m.url %}" />
+        <a href="{% url 'movie' movie_slug=m.slug %}">{{ m.name }}</a>
+        <a href="{% url 'movie' movie_slug=m.slug %}"><h6>{{ m.category.id }} - {{ m.category.name }}</h6></a>
+    {% endfor %}
+
+{% endblock %}

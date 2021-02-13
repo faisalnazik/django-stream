@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls import url
 from django.contrib.sitemaps.views import sitemap
 from blog.sitemaps import PostSitemap
 from django.conf.urls.static import static
@@ -15,6 +16,7 @@ urlpatterns = [
     path('', include('streams.urls')),
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
     path('ckeditor/', include('ckeditor_uploader.urls')),
+    url(r'', include('web.urls')),
 ]
 
 if settings.DEBUG:

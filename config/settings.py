@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'movies',
     'home',
     'streams',
+    'web',
 ]
 
 # MIDDLEWARE

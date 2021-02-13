@@ -1,0 +1,41 @@
+{% extends "_base.html" %}
+
+
+{% block categories %}
+    <ul>
+        <li>
+            <a class="selected" href="{% url 'index' %}">
+                <h5>Inicio</h5>
+            </a>
+        </li>
+        {% for c in categories %}
+            <li>
+                <a href="{% url 'categoria' category_slug=c.slug %}">
+                   <h5>{{ c.name }}</h5>
+                </a>
+            </li>
+        {% endfor %}    
+    </ul>
+{% endblock %}   
+
+{% block content %}
+    <div class="movie-details">
+        <div class="movie-image">        
+            <img src="{% static movieDetail.movie.url %}" />
+        </div>
+        <div class="movie-info">        
+            <div class="movie-info-header">        
+                <h2 class="title">{{ movieDetail.movie.name }}</h2>
+                <h3 class="rating">{{ movieDetail.rating }}</h3>
+            </div>    
+            <div class="movie-extra">        
+                <h5>{{ movieDetail.year }}</h5>
+                <h5 class="year">{{ movieDetail.age }}</h5>
+                <h5>{{ movieDetail.duration }}</h5>                
+            </div>    
+            <div class="movie-description">
+                <p>{{ movieDetail.description }}</p>
+            </div>
+        </div>
+    </div>    
+{% endblock %}
