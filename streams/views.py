@@ -16,7 +16,42 @@ class TvShowsClassifierView(ListView):
     model = TvShowsClassifier
     template_name = 'streams/list.html'
 
+class SeasonListView(ListView):
+    model = Season
+    template_name = 'streams/season_list.html'
 
+def season_list(request):
+    object_list = Season.published.all()
+    paginator = Paginator(object_list, 6)
+    page = request.GET.get('page')
+    try:
+        content = paginator.page(page)
+    except PageNotAnInteger:
+        content = paginator.page(1)
+    except EmptyPage:
+        content = paginator.page(paginator.num_pages)
+
+    return render(
+                'streams/list.html',
+                {'page' : page,
+                'content' : content,
+                }
+    )
+def season_detail(request, post,):
+
+    post = get_object_or_404(TvShowsClassifier, slug=post,
+                        status='published')
+    
+    
+    
+    post.views 	=  post.views + 1
+    post.save()
+    return render(request, 'streams/season_detail.html',
+                            {'post' : post,
+                            
+                            
+                            })
+                            
 def tv_show_list(request):
     object_list = TvShowsClassifier.published.all()
     paginator = Paginator(object_list, 6)

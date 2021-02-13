@@ -107,7 +107,11 @@ class Season(models.Model):
 
     def __str__(self):
         return self.title
+    def get_absolute_url(self):
+        return reverse('streams:season_detail', 
 
+                        args=[
+                        self.slug])
     objects = models.Manager()
     published = PublishedManager()
 
